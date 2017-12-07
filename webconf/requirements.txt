@@ -1,0 +1,4 @@
+Django==2.0
+gunicorn==19.7.1
+python-hosts==0.4.1
+

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="{% static "webform/bootstrap/css/bootstrap.min.css" %}">
+
+</head>
+<body>
+
+
+<div class="container" style="margin-top: 10%;">
+    {% if success %}
+        <div class="alert alert-success" role="alert">
+            Settings saved.
+        </div>
+    {% elif success == False %}
+        <div class="alert alert-danger" role="alert">
+            Something gone wrong...
+        </div>
+    {% endif %}
+    <form class="form" method="post" action="{% url 'webform' %}">
+        {% csrf_token %}
+        <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col control-label" for="server_name">ServerName</label>
+                <div class="col">
+                    <input id="server_name" name="server_name" placeholder="" class="form-control input-md" required=""
+                           type="text" value="{{ form.server_name.value|default_if_none:"" }}">
+                    {{ form.server_name.errors }}
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col control-label" for="host">Host</label>
+                <div class="col">
+                    <input id="host" name="host" placeholder="" class="form-control input-md" required="" type="text"
+                     value="{{ form.host.value|default_if_none:"" }}">
+                    {{ form.host.errors }}
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col control-label" for="port">Port</label>
+                <div class="col">
+                    <input id="port" name="port" placeholder="" class="form-control input-md" required="" type="text"
+                     value="{{ form.port.value|default_if_none:"" }}">
+                    {{ form.port.errors }}
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col control-label" for="document_root">DocumentRoot</label>
+                <div class="col">
+                    <input id="document_root" name="document_root" placeholder="" class="form-control input-md"
+                           required="" type="text" value="{{ form.document_root.value|default_if_none:"" }}">
+                    {{ form.document_root.errors }}
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col control-label" for="save_button"></label>
+                <div class="col">
+                    <button id="save_button" name="save_button" class="btn btn-primary float-right">Save</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+
+<script src="{% static "webform/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+</body>
+</html>
